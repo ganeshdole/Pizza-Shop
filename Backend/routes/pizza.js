@@ -11,7 +11,6 @@ router.get("/", async (req , res)=>{
         const [result] = await db.execute(statement);
         res.status(200).send(result);
     }catch(error){
-        console.log("1")
         res.status(500).send(utils.createError(error));
     }
 })

@@ -3,13 +3,15 @@ const cors = require('cors');
 const morgen = require('morgan');
 const mySecretKey = require('./config')
 const app = express();
-const userRouter = require('./routes/user'); 
-const pizzaRouter = require('./routes/pizza');
+
 const jwt = require('jsonwebtoken')
 const { createError } = require('./utils');
 
 
 
+const userRouter = require('./routes/user'); 
+const pizzaRouter = require('./routes/pizza');
+const orderRouter = require('./routes/order')
 
 app.use(cors());
 app.use(morgen('combined'));
@@ -26,7 +28,6 @@ app.use((req, res , next)=>{
             res.send(createError('Token Missing'))
         }else{
             try{
-                console.log("Hello ")
                 const   playload = jwt.verify(token, mySecretKey )
                 req.data = playload;
                 next()
@@ -38,6 +39,8 @@ app.use((req, res , next)=>{
 })
 app.use('/user', userRouter);
 app.use('/pizza', pizzaRouter);
+app.use('/order', orderRouter);
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
