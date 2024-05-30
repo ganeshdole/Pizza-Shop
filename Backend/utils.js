@@ -1,9 +1,5 @@
 const cryptoJs = require('crypto-js');
 
-function mySecretKey(){
-    return 'l$G`;mI`XQl$=s<'
-}
-
 
 function encrypt(text) {
     return String(cryptoJs.SHA256(text));
@@ -33,4 +29,4 @@ function createResult(error, data) {
     }
 }
 
-module.exports = { encrypt , createError, createSuccess, createResult , mySecretKey};
+module.exports = { encrypt , createError, createSuccess, createResult };

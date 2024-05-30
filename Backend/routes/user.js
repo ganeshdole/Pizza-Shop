@@ -3,6 +3,8 @@ const router = express.Router();
 const db = require('../db');
 const utils = require('../utils');
 
+const mySecretKey = require('../config')
+
 const jwt = require('jsonwebtoken');
 
 router.post("/signup", async (req, res) => {
@@ -33,8 +35,8 @@ router.post("/signin", async (req, res) => {
         else
         {
             const {id , email} = user[0];
-            const token = jwt.sign({"id": id, "email": email}, utils.mySecretKey());
-            res.send(utils.createSuccess(token));
+            const token = jwt.sign({"id": id, "email": email}, mySecretKey);
+            res.send(utils.createSuccess({ "token" : token }));
         }
     }catch(error){
         res.status(500).send(utils.createError(error));
