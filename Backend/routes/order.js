@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require("../db");
 const { createSuccess, createError } = require('../utils');
-const { mode } = require('crypto-js');
 const router = express.Router();
 
 
@@ -37,7 +36,6 @@ router.post('/', async ( req, res)=>{
 
     try{
         const statementOrder = 'insert into ordermaster(userId , totalAmount) values(?,? )'
-
         const order = await db.execute(statementOrder, [req.data.id, totalAmount]);
         const orderId = order[0].insertId;
         console.log(orderId)
@@ -54,8 +52,8 @@ router.post('/', async ( req, res)=>{
                 item['totalAmount']
             ]);
         };
+        
         res.send(createSuccess('Done'))
-
     }catch(error)
     {
         res.send(createError(error))

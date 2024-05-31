@@ -18,7 +18,7 @@ app.use(morgen('combined'));
 app.use(express.json());
 
 app.use((req, res , next)=>{
-    const sikpUrls = ['/user/signup', '/user/signin'];
+    const sikpUrls = ['/user/signup', '/user/signin', '/pizza'];
 
     if(sikpUrls.findIndex(item =>item ==req.url) != -1){
         next()
