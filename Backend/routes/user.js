@@ -28,9 +28,8 @@ router.post("/signin", async (req, res) => {
         const statement= `select * from user where email = '${email}' and password = '${encryptedPassword}'`;
 
         const  [user] = await db.execute(statement);
-        console.log(user);
         if(user.length === 0){
-            res.status(401).send(utils.createError('user not found'));
+            res.send(utils.createError('User not found'));
         }
         else
         {

@@ -18,11 +18,12 @@ app.use(morgen('combined'));
 app.use(express.json());
 
 app.use((req, res , next)=>{
-    const sikpUrls = ['/user/signup', '/user/signin', '/pizza'];
-
-    if(sikpUrls.findIndex(item =>item ==req.url) != -1){
-        next()
-    }else{
+    console.log(req.url);
+    const skipUrls = ['/user/signup', '/user/signin', '/pizza'];
+    if (skipUrls.findIndex(item => item == req.url) != -1) {
+        next();
+    }
+    else{
         const token = req.headers['token'];
         if(!token){
             res.send(createError('Token Missing'))

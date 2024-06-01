@@ -3,6 +3,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { signupUser } from "@/services/user";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,7 +12,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfrimPassword] = useState("");
-
+  const navigate = useNavigate();
   async function onSignup() {
     if (firstName.length === 0) {
       toast.error("Enter first name");
@@ -25,7 +27,13 @@ const Signup = () => {
     } else if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     } else {
-      // Proceed with signup logic, such as making an API call
+      const result = await signupUser(firstName, lastName, email, password);
+      if (result["status"] === "success") {
+        toast.success("Successfuly registred the user");
+        navigate("/signin");
+      } else {
+        toast.error(result["error"]);
+      }
     }
   }
 
@@ -102,7 +110,7 @@ const Signup = () => {
         <p className="ml-1 ">
           Alredy have an account?{" "}
           <Button variant="link" className="m-0 p-0 text-blue-800">
-            Sign In
+            <Link to="/signin">Sign In</Link>
           </Button>
         </p>
         <Button variant="secondary" className="w-full" onClick={onSignup}>
