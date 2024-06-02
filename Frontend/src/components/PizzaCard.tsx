@@ -7,7 +7,7 @@ import Chip from "@mui/joy/Chip";
 import Link from "@mui/joy/Link";
 import Typography from "@mui/joy/Typography";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { useState, useEffect } from "react";
+import { SERVER_URL } from "@/congif";
 
 interface Pizza {
   name: string;
@@ -22,26 +22,11 @@ export default function ProductCard({
   image,
   price,
 }: Pizza) {
-  const [pizzaImage, setPizzaImage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const importImage = async () => {
-      try {
-        const imageModule = await import(`@/assets/pizzaImages/${image}`);
-        setPizzaImage(imageModule.default);
-      } catch (error) {
-        console.error(`Failed to import image ${image}: ${error}`);
-      }
-    };
-
-    importImage();
-  }, [image]);
-
   return (
     <Card sx={{ width: 320, maxWidth: "100%", boxShadow: "lg" }}>
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 200 }}>
-          {pizzaImage && <img src={pizzaImage} loading="lazy" alt={name} />}
+          <img src={SERVER_URL + image} loading="lazy" alt={name} />
         </AspectRatio>
       </CardOverflow>
       <CardContent>
@@ -56,7 +41,6 @@ export default function ProductCard({
         >
           {name}
         </Link>
-
         <Typography
           level="title-lg"
           sx={{ mt: 1, fontWeight: "xl" }}
@@ -72,7 +56,7 @@ export default function ProductCard({
       </CardContent>
       <CardOverflow>
         <Button variant="solid" color="danger" size="lg">
-          Add to cart
+          Add to Cart
         </Button>
       </CardOverflow>
     </Card>

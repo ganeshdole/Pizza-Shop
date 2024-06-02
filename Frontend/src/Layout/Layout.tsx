@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 const Layout: React.FC = () => {
+  useEffect(() => {
+    console.log("layout comp");
+  });
   return (
     <>
       <header>

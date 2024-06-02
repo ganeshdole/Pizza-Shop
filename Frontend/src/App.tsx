@@ -3,7 +3,6 @@ import Home from "./pages/home";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Signup from "./pages/signup";
-
 import "react-toastify/dist/ReactToastify.css";
 import Signin from "./pages/signin";
 import Cart from "./pages/cart";

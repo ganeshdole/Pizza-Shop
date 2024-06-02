@@ -16,6 +16,7 @@ const orderRouter = require('./routes/order')
 app.use(cors());
 app.use(morgen('combined'));
 app.use(express.json());
+app.use(express.static('images'))
 
 app.use((req, res , next)=>{
     console.log(req.url);
