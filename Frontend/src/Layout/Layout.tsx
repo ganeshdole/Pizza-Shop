@@ -12,6 +12,7 @@ const Layout: React.FC = () => {
         <Outlet />
       </main>
       <footer>
+        <hr />
         <Footer />
       </footer>
     </>

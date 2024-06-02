@@ -6,6 +6,8 @@ import Signup from "./pages/signup";
 
 import "react-toastify/dist/ReactToastify.css";
 import Signin from "./pages/signin";
+import Cart from "./pages/cart";
+import Orders from "./pages/orders";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
         </Route>
       </Routes>
       <ToastContainer />

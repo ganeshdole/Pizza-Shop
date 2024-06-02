@@ -1,4 +1,4 @@
-const Order: React.FC = () => {
+const Orders: React.FC = () => {
   return (
     <>
       <h1>Order</h1>
@@ -6,4 +6,4 @@ const Order: React.FC = () => {
   );
 };
 
-export default Order;
+export default Orders;
