@@ -8,6 +8,8 @@ import Link from "@mui/joy/Link";
 import Typography from "@mui/joy/Typography";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { SERVER_URL } from "@/congif";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/features/cart/cartSlice";
 
 interface Pizza {
   name: string;
@@ -22,6 +24,11 @@ export default function ProductCard({
   image,
   price,
 }: Pizza) {
+  const dispatch = useDispatch();
+  function onClickAddItemtoCart() {
+    dispatch(addItem({ name, description, image, price }));
+  }
+
   return (
     <Card sx={{ width: 320, maxWidth: "100%", boxShadow: "lg" }}>
       <CardOverflow>
@@ -55,7 +62,14 @@ export default function ProductCard({
         <Typography level="body-sm">{description}</Typography>
       </CardContent>
       <CardOverflow>
-        <Button variant="solid" color="danger" size="lg">
+        <Button
+          variant="solid"
+          color="danger"
+          size="lg"
+          onClick={() => {
+            onClickAddItemtoCart();
+          }}
+        >
           Add to Cart
         </Button>
       </CardOverflow>

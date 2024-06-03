@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [token, setToken] = useState("");
-
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
   function onClickLogOut() {
     sessionStorage.removeItem("token");
     setToken(null);
@@ -30,7 +32,7 @@ const Navbar = () => {
               to="/cart"
               className="border-2 p-2 rounded-lg cursor-pointer"
             >
-              Cart(0)
+              Cart({cart.items.length})
             </NavLink>
           </li>
           {!token && (
