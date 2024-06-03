@@ -11,7 +11,10 @@ export const cartSlice = createSlice({
 
     addItem: (state,payload) => {
       console.log(payload)
-      state.items.push(payload);
+      state.items.push({payload, quantity : 1});
+    },
+    updateQunitity : (state, payload)=>{
+      console.log(payload)
     },
     removeItem: (state, payload) => {
 
